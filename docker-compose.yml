@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: ./Dockerfile
+    container_name: gshark-web
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - server
+    command: [ 'nginx-debug', '-g', 'daemon off;' ]
+
+  server:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    container_name: gshark-server
+    restart: always
+    ports:
+      - '8888:8888'
+    depends_on:
+      - mysql
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:8.0.21
+    container_name: gshark-mysql
+    hostname: gshark-mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --init-file /data/application/init.sql
+    volumes: 
+      - ./init.sql:/data/application/init.sql
+    restart: always
+    ports:
+      - "13306:3306"  # host物理直接映射端口为13306
+    environment:
+      - MYSQL_ROOT_PASSWORD=gshark
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=gshark
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
