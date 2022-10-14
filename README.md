@@ -12,14 +12,14 @@
 
    端口：3306
 
-   密码：xx
+   密码：gshark
 
    然后使用gshark/gshark默认密码登录系统
 
 3. 启动扫描器（前提是完成第二步初始化数据库，进入到容器里面启动，不然会不能启动，因为会去读数据库）
 
    ```
-   docker exec -it gshark-server sh -c 'nohup ./server scan &> output'
+  docker exec -d gshark-server sh -c 'nohup ./server scan &> output'
    ```
 
 4. 在页面配置github  token、后缀、修改密码等，愉快玩耍~
