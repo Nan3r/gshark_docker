@@ -31,9 +31,3 @@
 1. 此系统前端现在还有一些BUG！！可能我修（前端不太会），也可能等着官方修了。
 2. 本项目会跟着官方master分支**手动**更新。
 3. **原项目：https://github.com/madneal/gshark**
-
-# 小广告
-
-每天分享渗透工具和小tricks，欢迎各位师傅来玩耍~
-
-![2](README.assets/2.jpg)
