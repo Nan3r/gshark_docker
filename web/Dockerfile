@@ -6,7 +6,7 @@ RUN rm -rf package-lock.json
 RUN npm install
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:1.25.3-alpine3.18
 
 COPY nginx/my.conf /etc/nginx/conf.d/my.conf
 COPY --from=0 /gshark_web/dist /usr/share/nginx/html
